@@ -1,40 +1,58 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Digital Library</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="container-fluid flex-column main-wraper">
+        <div class="row header-container">
+            <div class="col bg-dark text-center">
+                <header>
+                    <img class="small-logo-image d-inline-block align-middle" src="~/Content/Images/logo.svg" alt="logo">
+                    <div class="header-text align-middle">
+                        Digital Library
+                    </div>
+                </header>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </div>
+        <div class="row midle-container">
+            <div class="col d-flex justify-content-center">
+                <div class="midle-conent d-flex align-items-streach">
+                    <div class="container-fluid d-flex align-items-streach">
+                        <div class="row d-flex align-items-stretch" id="wrap">
+                            <div class="col main-content">
+                                @RenderBody()
+                            </div>
+                            <div class="col-md-3 col-sm bg-secondary">
+                                <div class="sidenav sidebar">
+                                    <nav class="nav flex-column sidenav">
+                                        @Html.ActionLink("Home", "Index", "Home", null, new { @clas = "nav-link" })
+                                        @Html.ActionLink("Guest", "Index", "Guest", null, new { @clas = "nav-link" })
+                                        @Html.ActionLink("Questionnaire", "Index", "Questionnaire", null, new { @clas = "nav-link" })
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row foter-cantainer">
+            <div class="col bg-dark">
+                <div class="footer-content text-center">
+                    <footer>
+                        &copy; @DateTime.Now.Year - Andrii Horban Whiteman1989@gmail.com
+                        <a class="top-button" href="#top">To top</a>
+                    </footer>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

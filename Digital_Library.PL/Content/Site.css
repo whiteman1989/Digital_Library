@@ -1,24 +1,92 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+.small-logo-image {
+    width: 35px;
+    height: 35px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.header-text {
+    display: inline;
+    font-size: 30px;
+    margin: 0 10px;
+    color: #ffffff;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.main-container {
+    width: 80%;
+}
+
+.midle-conent {
+    width: 80%;
+}
+
+header,
+footer {
+    width: 100%;
+    padding: 10px;
+    color: #ffff;
+}
+
+.sidenav a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+    .sidenav a:hover {
+        font-size: 1.5rem;
+        color: #555f;
+    }
+
+.main-article {
+    margin: 10px 10px;
+}
+
+.main-content .main-article:first-child {
+    margin-top: 30px;
+}
+
+.main-content .main-article:last-child {
+    margin-bottom: 30px;
+}
+
+.vertiacl-from * {
+    margin-top: 10px;
+}
+
+
+.survey-form h5 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.midle-container {
+    flex-grow: 1;
+}
+
+.header-container,
+.foter-container {
+    flex-grow: 0;
+}
+
+.main-wraper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.midle-conent,
+.midle-conent container-fluid {
+    height: 100%;
+}
+
+#wrap {
+    width: 100%
 }

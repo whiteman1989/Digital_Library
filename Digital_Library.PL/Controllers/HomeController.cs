@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Digital_Library.BL.DTO;
+using Digital_Library.BL.Interfaces;
+using Digital_Library.BL.Services;
 
 namespace Digital_Library.PL.Controllers
 {
     public class HomeController : Controller
     {
+        private IServiceCreator _serviceCreator;
+        private IPostsService _postsService;
+
+        public HomeController()
+        {
+            _serviceCreator = new ServiceCreator();
+            _postsService = _serviceCreator.CreatePostService();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var posts = _postsService.GetPosts();
+            return View(posts);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

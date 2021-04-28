@@ -1,0 +1,24 @@
+﻿@model Digital_Library.PL.Models.CommentsViewModel
+@foreach (Digital_Library.BL.DTO.CommetDTO coment in Model.Commets)
+{
+    <article class="coment main-article">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">@coment.Author</h5>
+                <time class="card-subtitle text-right" datetime="@coment.Date.ToString()">@coment.Date.ToString("yyyy.MM.dd")</time>
+                <p class="card-text">@coment.Text</p>
+            </div>
+        </div>
+    </article>
+}
+@if(ViewBag.Errors is object)
+{
+    <div class="text-danger">
+        <ul>
+            @foreach (string error in ViewBag.Errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}

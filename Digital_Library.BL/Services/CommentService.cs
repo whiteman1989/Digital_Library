@@ -31,6 +31,7 @@ namespace Digital_Library.BL.Services
         {
             var comment = _mapper.Map<Comment>(commetDTO);
             _unitOfWork.Comments.Create(comment);
+            _unitOfWork.Save();
         }
 
         public void DeleteComent(int id)
@@ -39,6 +40,7 @@ namespace Digital_Library.BL.Services
             {
                 throw new ValidationException("No comment with this id", "id");
             }
+            _unitOfWork.Save();
         }
 
         public CommetDTO GetComment(int id)
@@ -56,7 +58,7 @@ namespace Digital_Library.BL.Services
 
         public IEnumerable<CommetDTO> GetComments()
         {
-            var commentDTO = _mapper.Map<IEnumerable<CommetDTO>>(_unitOfWork.Comments.GetAll());
+            var commentDTO = _mapper.Map<IEnumerable<CommetDTO>>(_unitOfWork.Comments.GetAll().AsEnumerable());
             return commentDTO;
         }
 
@@ -77,6 +79,7 @@ namespace Digital_Library.BL.Services
         {
             var comment = _mapper.Map<Comment>(commetDTO);
             _unitOfWork.Comments.Update(comment);
+            _unitOfWork.Save();
         }
     }
 }

@@ -62,7 +62,7 @@ namespace Digital_Library.BL.Services
 
         public IEnumerable<PostDTO> GetPosts()
         {
-            var postsDTo = _mapper.Map<IEnumerable<PostDTO>>(_unitOfWork.Posts.GetAll());
+            var postsDTo = _mapper.Map<IEnumerable<PostDTO>>(_unitOfWork.Posts.GetAll().AsEnumerable());
             return postsDTo;
         }
 
