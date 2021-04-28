@@ -9,10 +9,10 @@ using Digital_Library.BL.Interfaces;
 
 namespace Digital_Library.BL.Services
 {
-    public class SeviceCreator
+    public class ServiceCreator : IServiceCreator
     {
         private readonly IUnitOfWork _unitOfWork;
-        public SeviceCreator()
+        public ServiceCreator()
         {
             _unitOfWork = new EFUnitOfWork("DefaultConnection");
         }
