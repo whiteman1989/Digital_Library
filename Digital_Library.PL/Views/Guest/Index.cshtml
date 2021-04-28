@@ -10,10 +10,10 @@
 <div class="form-container card bg-secondary text-white main-article">
     <div class="card-body">
         <p class="form-name card-subtitle">Add comment</p>
-        @using (Ajax.BeginForm("Index", null, new AjaxOptions { UpdateTargetId = "comments-target", HttpMethod = "Post", OnSuccess = "()=>$('#Result').slideDown('slow')" }, new { @class = "vertiacl-from", id = "vertiacl-from" }))
+        @using (Ajax.BeginForm("Index", null, new AjaxOptions { UpdateTargetId = "comments-target", HttpMethod = "Post" }, new { @class = "vertiacl-from", id = "vertiacl-from" }))
         {
             @Html.ValidationSummary(true)
-            @Html.TextBoxFor(m => m.NewCommentAuthor, new { @class = "form-control", required="required" })
+            @Html.TextBoxFor(m => m.NewCommentAuthor, new { @class = "form-control", required = "required" })
             @Html.TextAreaFor(m => m.NewCommentText, new { @class = "form-control", required = "required" })
             <input type="submit" value="Submit" class="btn btn-dark" />
         }
