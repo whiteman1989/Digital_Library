@@ -10,5 +10,6 @@ namespace Digital_Library.BL.Interfaces
     {
         IPostsService CreatePostService();
         ICommentsSerice CreateCommentService();
+        IQestionnarieService CreatyeQestionnarieService();
     }
 }

@@ -19,5 +19,7 @@ namespace Digital_Library.BL.Services
 
         public IPostsService CreatePostService() => new PostService(_unitOfWork);
         public ICommentsSerice CreateCommentService() => new CommentService(_unitOfWork);
+
+        public IQestionnarieService CreatyeQestionnarieService() => new QuestionnarieService(_unitOfWork); 
     }
 }

@@ -11,6 +11,10 @@ namespace Digital_Library.DAL.Interfaces
     {
         IRepository<Post> Posts { get; }
         IRepository<Comment> Comments { get; }
+        IRepository<Question> Questions { get; }
+        IRepository<Questionnarie> Qestionnaries { get; }
+        IRepository<AnswerVariant> AnswerVariants { get; }
+        IRepository<Answer> Answers { get; }
 
         /// <summary>
         /// Call save methods in each repository

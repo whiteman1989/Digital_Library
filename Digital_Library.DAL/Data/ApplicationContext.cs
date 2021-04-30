@@ -9,6 +9,10 @@ namespace Digital_Library.DAL.Data
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Questionnarie> Questionnaries { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<AnswerVariant> AnswerVariants { get; set; }
+        public DbSet<Answer> Answers { get; set; }
 
         static ApplicationContext()
         {
@@ -17,6 +21,8 @@ namespace Digital_Library.DAL.Data
 
         public ApplicationContext (string connectionString) : base(connectionString)
         {
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
         }
     }
 }

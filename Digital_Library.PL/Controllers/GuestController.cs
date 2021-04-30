@@ -15,9 +15,9 @@ namespace Digital_Library.PL.Controllers
         private IServiceCreator _serviceCreator;
         private ICommentsSerice _commentsSerice;
 
-        public GuestController()
+        public GuestController(IServiceCreator serviceCreator)
         {
-            _serviceCreator = new ServiceCreator();
+            _serviceCreator = serviceCreator;
             _commentsSerice = _serviceCreator.CreateCommentService();
         }
 

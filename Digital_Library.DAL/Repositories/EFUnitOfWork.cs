@@ -14,6 +14,15 @@ namespace Digital_Library.DAL.Repositories
         private readonly ApplicationContext db;
         private PostsRepository postsRepository;
         private CommentsRepository commentsRepository;
+        private QuestionnariesRepository questionnariesRepository;
+        private QuestionsRepository questionsRepository;
+        private AnswerVariantsRepository answerVariantsRepository;
+        private AnswersRepository answersRepository;
+
+        public EFUnitOfWork()
+        {
+            db = new ApplicationContextFactory().Create();
+        }
 
         public EFUnitOfWork(string connectionString)
         {
@@ -34,6 +43,42 @@ namespace Digital_Library.DAL.Repositories
             {
                 if (commentsRepository is null) commentsRepository = new CommentsRepository(db);
                 return commentsRepository;
+            }
+        }
+
+        public IRepository<Question> Questions
+        {
+            get
+            {
+                if (questionsRepository is null) questionsRepository = new QuestionsRepository(db);
+                return questionsRepository;
+            }
+        }
+
+        public IRepository<Questionnarie> Qestionnaries 
+        {
+            get
+            {
+                if (questionnariesRepository is null) questionnariesRepository = new QuestionnariesRepository(db);
+                return questionnariesRepository;
+            }
+        }
+
+        public IRepository<AnswerVariant> AnswerVariants
+        {
+            get
+            {
+                if (answerVariantsRepository is null) answerVariantsRepository = new AnswerVariantsRepository(db);
+                return answerVariantsRepository;
+            }
+        }
+
+        public IRepository<Answer> Answers
+        {
+            get
+            {
+                if (answersRepository is null) answersRepository = new AnswersRepository(db);
+                return answersRepository;
             }
         }
 

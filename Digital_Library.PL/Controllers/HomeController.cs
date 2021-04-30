@@ -14,9 +14,9 @@ namespace Digital_Library.PL.Controllers
         private IServiceCreator _serviceCreator;
         private IPostsService _postsService;
 
-        public HomeController()
+        public HomeController(IServiceCreator serviceCreator)
         {
-            _serviceCreator = new ServiceCreator();
+            _serviceCreator = serviceCreator;
             _postsService = _serviceCreator.CreatePostService();
         }
 

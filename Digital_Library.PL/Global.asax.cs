@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Digital_Library.BL.Interfaces;
 using Digital_Library.BL.Services;
+using Digital_Library.PL.Controllers;
 
 namespace Digital_Library.PL
 {
@@ -18,6 +19,7 @@ namespace Digital_Library.PL
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ControllerBuilder.Current.SetControllerFactory(new AppControllerFactory(new ServiceCreator()));
         }
     }
 }

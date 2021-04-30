@@ -54,19 +54,35 @@
     <Compile Include="Data\ApplicationContext.cs" />
     <Compile Include="Data\ApplicationContextFactory.cs" />
     <Compile Include="Data\ApplicationDbInitializer.cs" />
+    <Compile Include="Entities\Answer.cs" />
+    <Compile Include="Entities\AnswerVariant.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Questionnarie.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\202104281404340_Initial.cs" />
     <Compile Include="Migrations\202104281404340_Initial.designer.cs">
       <DependentUpon>202104281404340_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104291011549_Add Questions.cs" />
+    <Compile Include="Migrations\202104291011549_Add Questions.designer.cs">
+      <DependentUpon>202104291011549_Add Questions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104291140198_Add Date to Answer.cs" />
+    <Compile Include="Migrations\202104291140198_Add Date to Answer.designer.cs">
+      <DependentUpon>202104291140198_Add Date to Answer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AnswersRepository.cs" />
+    <Compile Include="Repositories\AnswerVariantsRepository.cs" />
     <Compile Include="Repositories\CommentsRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\PostsRepository.cs" />
+    <Compile Include="Repositories\QuestionnariesRepository.cs" />
+    <Compile Include="Repositories\QuestionsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,6 +91,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104281404340_Initial.resx">
       <DependentUpon>202104281404340_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104291011549_Add Questions.resx">
+      <DependentUpon>202104291011549_Add Questions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104291140198_Add Date to Answer.resx">
+      <DependentUpon>202104291140198_Add Date to Answer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
