@@ -1,0 +1,12 @@
+﻿@model Digital_Library.PL.Models.EditQuestionnarieViewModel
+
+<h2 class="form-name card-title">@Model.Questionnarie.Title</h2>
+<div id="question-target"></div>
+@using (Ajax.BeginForm("AddQuestion", null, new AjaxOptions { UpdateTargetId = "question-target", HttpMethod = "Post" }, new { @class = "vertiacl-from", id = "question"}))
+{
+    @Html.HiddenFor(m => m.Questionnarie.Id)
+    @Html.HiddenFor(m => m.NewQuestion.QuestionnarieId)
+    @Html.TextBoxFor(m => m.NewQuestion.Text, new { @class = "form-control", required = "required" })
+    @Html.EnumDropDownListFor(m =>m.NewQuestion.QuestionType, new { @class = "form-control", required = "required" })
+    <input type="submit" value="Add question" class="btn btn-dark" />
+}

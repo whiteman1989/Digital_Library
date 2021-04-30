@@ -12,6 +12,7 @@ namespace Digital_Library.BL.Interfaces
     {
         QuestionnarieDTO GetQuestionnarie(int id);
         IEnumerable<QuestionnarieDTO> GetQuestionnaries();
+        IEnumerable<QuestionnarieDTO> GetActiveQuestionnaries();
         QuestionnarieDTO AddQuestionnarie(QuestionnarieDTO questionnarie );
         QuestionDTO AddQuestion(QuestionDTO question);
         AnswerVariantDTO AddAnswerVariant(AnswerVariantDTO answerVariant);

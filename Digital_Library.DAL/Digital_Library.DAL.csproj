@@ -74,6 +74,14 @@
     <Compile Include="Migrations\202104291140198_Add Date to Answer.designer.cs">
       <DependentUpon>202104291140198_Add Date to Answer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104301043441_test101.cs" />
+    <Compile Include="Migrations\202104301043441_test101.designer.cs">
+      <DependentUpon>202104301043441_test101.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104301156571_add question type.cs" />
+    <Compile Include="Migrations\202104301156571_add question type.designer.cs">
+      <DependentUpon>202104301156571_add question type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AnswersRepository.cs" />
@@ -97,6 +105,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104291140198_Add Date to Answer.resx">
       <DependentUpon>202104291140198_Add Date to Answer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104301043441_test101.resx">
+      <DependentUpon>202104301043441_test101.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104301156571_add question type.resx">
+      <DependentUpon>202104301156571_add question type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

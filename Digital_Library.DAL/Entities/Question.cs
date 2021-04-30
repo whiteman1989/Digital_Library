@@ -11,6 +11,7 @@ namespace Digital_Library.DAL.Entities
         public int Id { get; set; }
         public string Text { get; set; }
         public int QuestionnarieId { get; set; }
+        public QuestionType QuestionType { get; set; }
 
         //nav
         public virtual Questionnarie Questionnarie { get; set; }

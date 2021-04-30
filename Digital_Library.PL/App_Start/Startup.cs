@@ -27,5 +27,10 @@ namespace Digital_Library.PL.App_Start
         {
             return _serviceCreator.CreateCommentService();
         }
+
+        private IQestionnarieService CreateQuestionnarieService()
+        {
+            return _serviceCreator.CreatyeQestionnarieService();
+        }
     }
 }

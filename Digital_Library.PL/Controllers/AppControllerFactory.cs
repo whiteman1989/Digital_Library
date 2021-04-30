@@ -20,7 +20,7 @@ namespace Digital_Library.PL.Controllers
 
         public override IController CreateController(RequestContext requestContext, string controllerName)
         {
-            Type type = GetControllerType(requestContext, controllerName);
+            Type type = GetControllerType(requestContext, controllerName) ?? typeof(HomeController);
             return Activator.CreateInstance(type, new Object[] { _serviceCreator}) as IController;
         }
     }

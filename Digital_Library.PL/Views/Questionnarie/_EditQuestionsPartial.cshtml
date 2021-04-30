@@ -1,0 +1,36 @@
+﻿@model Digital_Library.PL.Models.EditQuestionsViewModel
+@using Digital_Library.PL.Models
+@using Digital_Library.BL.DTO
+
+<ul class="questions-list">
+    @for (int i = 0; i < Model.EditQuestions.Count; i++)
+    {
+        var question = Model.EditQuestions[i];
+    <li class="question-item">
+        <h3>@question.Question.Text (@question.Question.QuestionType)</h3>
+        @{ var q = question.Question; }
+        <ol>
+            @if (q.AnswerVariants is object && q.AnswerVariants.Count > 0)
+            {
+                foreach (AnswerVariantDTO a in q.AnswerVariants)
+                {
+                    <li>@a.Text</li>
+                }
+            }
+            <li>
+                @using (Ajax.BeginForm("AddAnswerVariant", null,
+                new AjaxOptions { UpdateTargetId = "question-target", HttpMethod = "Post" },
+                new { @class = "vertiacl-from", id = "vertiacl-from" }))
+                {
+                    @Html.HiddenFor(m => m.Questionnarie.Id)
+                    @Html.HiddenFor(m => m.EditQuestions[i].Question.Id)
+                    @Html.HiddenFor(m => m.EditQuestions[i].NewAnsverVariant.QuestionId)
+                    @Html.EditorFor(m => m.EditQuestions[i].NewAnsverVariant.Text)
+                    <input type="submit" value="Add answer" class="btn btn-dark" />
+                }
+            </li>
+        </ol>
+    </li>
+    }
+</ul>
+

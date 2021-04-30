@@ -90,6 +90,12 @@ namespace Digital_Library.BL.Services
             return _mapper.Map<QuestionnarieDTO>(newQuestionnarie);
         }
 
+        public IEnumerable<QuestionnarieDTO> GetActiveQuestionnaries()
+        {
+            var activeQuestionnaries = _unitOfWork.Qestionnaries.Find(q => q.IsActive);
+            return _mapper.Map<IEnumerable<QuestionnarieDTO>>(activeQuestionnaries.AsEnumerable());
+        }
+
         public QuestionnarieDTO GetQuestionnarie(int id)
         {
             return _mapper.Map<QuestionnarieDTO>(_unitOfWork.Qestionnaries.Get(id));

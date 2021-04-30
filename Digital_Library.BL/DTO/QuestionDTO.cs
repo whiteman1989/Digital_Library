@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Digital_Library.DAL.Entities;
 
 namespace Digital_Library.BL.DTO
 {
@@ -11,6 +12,7 @@ namespace Digital_Library.BL.DTO
         public int Id { get; set; }
         public string Text { get; set; }
         public int QuestionnarieId { get; set; }
+        public QuestionType QuestionType { get; set; }
 
         //nav
         public QuestionnarieDTO Questionnarie { get; set; }
