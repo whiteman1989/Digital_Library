@@ -7,10 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Digital_Library.PL.Models
 {
-    public class EditQuestionsViewModel
+    public class ResultViewModel
     {
         public QuestionnarieDTO Questionnarie { get; set; }
-        public List<QuestionDTO> Questions { get; set; }
-        public AnswerVariantDTO NewAnswerVariant { get; set; }
+        public List<QuestionStats> QuestionStats { get; set; }
     }
 }

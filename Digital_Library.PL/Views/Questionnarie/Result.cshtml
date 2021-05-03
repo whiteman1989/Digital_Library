@@ -1,0 +1,21 @@
+﻿@model Digital_Library.PL.Models.ResultViewModel
+@using Digital_Library.PL.Models
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>@Model.Questionnarie.Title</h2>
+@foreach(QuestionStats qs in Model.QuestionStats)
+{
+    <h3>@qs.Question.Text</h3>
+    <ul>
+        @foreach(AnswerStat ans in qs.AnswerStats)
+        {
+            <li>
+                @ans.Text - @ans.Count users
+            </li>
+        }
+    </ul>
+}
+

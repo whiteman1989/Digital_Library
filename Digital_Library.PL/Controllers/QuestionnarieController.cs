@@ -27,13 +27,13 @@ namespace Digital_Library.PL.Controllers
         {
             var viewModel = new QuestionnariesViewModel();
             var questionnaries = _qestionnarieService.GetActiveQuestionnaries();
-            viewModel.Questionnaries = questionnaries;
+            viewModel.Questionnaries = questionnaries.ToList();
             return View(viewModel);
         }
 
         public ActionResult IndexUpdate()
         {
-            var questionnaries = _qestionnarieService.GetActiveQuestionnaries();
+            var questionnaries = _qestionnarieService.GetActiveQuestionnaries().ToList();
             return PartialView("_QuestionnariesPartial",questionnaries);
         }
 
@@ -56,17 +56,35 @@ namespace Digital_Library.PL.Controllers
             return PartialView("_EditQuestionsPartial", viewModel);
         }
 
-        public ActionResult AddAnswerVariant(EditQuestionsViewModel editQuestions)
+        public ActionResult AddAnswerVariant(EditQuestionsViewModel editQuestions, int id)
         {
-            foreach(var question in editQuestions.EditQuestions)
-            {
-                if(question.NewAnsverVariant is object)
-                {
-                    _qestionnarieService.AddAnswerVariant(question.NewAnsverVariant);
-                }
-            }
+            editQuestions.NewAnswerVariant.QuestionId = id;
+            _qestionnarieService.AddAnswerVariant(editQuestions.NewAnswerVariant);
             var viewModel = FillEditQuestionsView(editQuestions.Questionnarie.Id);
             return PartialView("_EditQuestionsPartial", viewModel);
+        }
+
+        public ActionResult ActivateQuestionnarie(int id)
+        {
+            _qestionnarieService.ActivateQuestionnarie(id);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RegisterAnswer(int questionnarieId, List<AnswerDTO> answers)
+        {
+            _qestionnarieService.AddAnswers(answers);
+            var questionnarie = _qestionnarieService.GetQuestionnarie(questionnarieId);
+            var questions = questionnarie.Questions;
+            List<QuestionStats> questionStats = new List<QuestionStats>();
+            foreach(var question in questions)
+            {
+                var aStats = question.Answers.GroupBy(a => a.Text)
+                    .Select(ag => new AnswerStat { Text = ag.Key, Count = ag.Count() });
+                var qStats = new QuestionStats { Question = question, AnswerStats = aStats.ToList() };
+                questionStats.Add(qStats);
+            }
+            var viewModel = new ResultViewModel { Questionnarie = questionnarie, QuestionStats = questionStats };
+            return View("Result", viewModel);
         }
 
         #region HELPERS
@@ -74,12 +92,8 @@ namespace Digital_Library.PL.Controllers
         {
             var questionnarie = _qestionnarieService.GetQuestionnarie(id);
             var questions = questionnarie.Questions;
-            var viewModel = new EditQuestionsViewModel { Questionnarie = questionnarie };
-            viewModel.EditQuestions = questions.Select(q => new EditQuestionViewModel
-            {
-                Question = q,
-                NewAnsverVariant = new AnswerVariantDTO { QuestionId = q.Id }
-            }).ToList();
+            var viewModel = new EditQuestionsViewModel { Questionnarie = questionnarie, NewAnswerVariant = null };
+            viewModel.Questions = questions;
 
             return viewModel;
         }

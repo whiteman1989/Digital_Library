@@ -33,6 +33,13 @@ namespace Digital_Library.BL.Services
             _mapper = new Mapper(mapperConfig);
         }
 
+        public void ActivateQuestionnarie(int id)
+        {
+            var questionnarie = _unitOfWork.Qestionnaries.Get(id);
+            questionnarie.IsActive = true;
+            _unitOfWork.Save();
+        }
+
         public void AddAnswer(AnswerDTO answer)
         {
             var question = _unitOfWork.Questions.Get(answer.QuestionId);
@@ -53,6 +60,7 @@ namespace Digital_Library.BL.Services
             var newAnsvers = _mapper.Map<IEnumerable<Answer>>(answers);
             foreach(var answer in newAnsvers)
             {
+                answer.Date = DateTime.Now;
                 _unitOfWork.Answers.Create(answer);
             }
             _unitOfWork.Save();

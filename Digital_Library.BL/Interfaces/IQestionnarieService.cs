@@ -18,5 +18,6 @@ namespace Digital_Library.BL.Interfaces
         AnswerVariantDTO AddAnswerVariant(AnswerVariantDTO answerVariant);
         void AddAnswers(IEnumerable<AnswerDTO> answers);
         void AddAnswer(AnswerDTO answer);
+        void ActivateQuestionnarie(int id);
     }
 }

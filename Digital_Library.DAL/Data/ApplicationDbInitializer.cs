@@ -8,7 +8,7 @@ using Digital_Library.DAL.Entities;
 
 namespace Digital_Library.DAL.Data
 {
-    public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationContext>
+    public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationContext>
     {
         protected override void Seed(ApplicationContext context)
         {

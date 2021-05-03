@@ -1,5 +1,9 @@
 ﻿@model Digital_Library.PL.Models.QuestionnariesViewModel
 
+@{
+    ViewBag.Title = "Questionnaries";
+}
+
 <div class="comments" id="comments-target">
     @Html.Partial("_QuestionnariesPartial", Model.Questionnaries)
 </div>

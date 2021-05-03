@@ -23,7 +23,7 @@ namespace Digital_Library.DAL.Entities
     public enum QuestionType
     {
         TextBox,
-        RadioButton,
+        RadioButtons,
         CheckBoxes,
     }
 }

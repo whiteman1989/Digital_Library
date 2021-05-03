@@ -149,11 +149,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnswerStat.cs" />
     <Compile Include="Models\CommentsViewModel.cs" />
     <Compile Include="Models\EditQuestionnarieViewModel.cs" />
     <Compile Include="Models\EditQuestionsViewModel.cs" />
     <Compile Include="Models\EditQuestionViewModel.cs" />
     <Compile Include="Models\QuestionnariesViewModel.cs" />
+    <Compile Include="Models\QuestionStats.cs" />
+    <Compile Include="Models\ResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +307,7 @@
     <Content Include="Views\Questionnarie\EditQestionnarie.cshtml" />
     <Content Include="Views\Questionnarie\View.cshtml" />
     <Content Include="Views\Questionnarie\_EditQuestionsPartial.cshtml" />
+    <Content Include="Views\Questionnarie\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
