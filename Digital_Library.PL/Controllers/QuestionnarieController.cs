@@ -12,8 +12,8 @@ namespace Digital_Library.PL.Controllers
 {
     public class QuestionnarieController : Controller
     {
-        private IServiceCreator _serviceCreator;
-        private IQestionnarieService _qestionnarieService;
+        private readonly IServiceCreator _serviceCreator;
+        private readonly IQestionnarieService _qestionnarieService;
 
         public QuestionnarieController(IServiceCreator serviceCreator)
         {
@@ -31,12 +31,14 @@ namespace Digital_Library.PL.Controllers
             return View(viewModel);
         }
 
+        //GET: Questionnarie/IndexUodate
         public ActionResult IndexUpdate()
         {
             var questionnaries = _qestionnarieService.GetActiveQuestionnaries().ToList();
             return PartialView("_QuestionnariesPartial",questionnaries);
         }
 
+        //GET: Questionnarie/AddQuestionnarie
         public ActionResult AddQuestionnarie(QuestionnariesViewModel questionnariesView)
         {
             var questionnarie = new QuestionnarieDTO { Title = questionnariesView.NewQuestionnarie};
@@ -47,6 +49,7 @@ namespace Digital_Library.PL.Controllers
             return PartialView("EditQestionnarie", viewModel);
         }
 
+        // GET: Questionnarie/AddQuetion
         public ActionResult AddQuestion(EditQuestionnarieViewModel editQuestionnarie)
         {
             var question = editQuestionnarie.NewQuestion;
@@ -56,6 +59,7 @@ namespace Digital_Library.PL.Controllers
             return PartialView("_EditQuestionsPartial", viewModel);
         }
 
+        // GET: Questionnarie/AddAnsverVariant
         public ActionResult AddAnswerVariant(EditQuestionsViewModel editQuestions, int id)
         {
             editQuestions.NewAnswerVariant.QuestionId = id;
@@ -64,12 +68,14 @@ namespace Digital_Library.PL.Controllers
             return PartialView("_EditQuestionsPartial", viewModel);
         }
 
+        // GET: Questionnarie/ActivateQuestionnarie
         public ActionResult ActivateQuestionnarie(int id)
         {
             _qestionnarieService.ActivateQuestionnarie(id);
             return RedirectToAction("Index");
         }
 
+        // Get: Questionnarie/RegisterAnswer
         public ActionResult RegisterAnswer(int questionnarieId, List<QuestionDTO> questionsRes)
         {
             var answers = new List<AnswerDTO>();
@@ -98,6 +104,7 @@ namespace Digital_Library.PL.Controllers
             return View("Result", viewModel);
         }
 
+        //POST: Questionnarie/CheckExistingQuestionntarie
         [HttpPost]
         public ActionResult CheckExistingQuestionntarie(string NewQuestionnarie)
         {

@@ -10,6 +10,9 @@ using Digital_Library.BL.DTO;
 using Digital_Library.BL.Infrastructure;
 using AutoMapper;
 
+/// <summary>
+/// Implement post service
+/// </summary>
 namespace Digital_Library.BL.Services
 {
     public class PostService : IPostsService
@@ -17,6 +20,10 @@ namespace Digital_Library.BL.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mapper _mapper;
 
+        /// <summary>
+        /// Constructor get UnitOfWork object
+        /// </summary>
+        /// <param name="unitOfWork">Unit Of Work</param>
         public PostService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

@@ -9,9 +9,16 @@ using Digital_Library.BL.Interfaces;
 
 namespace Digital_Library.BL.Services
 {
+    /// <summary>
+    /// Services factory for create services without IoC container
+    /// </summary>
     public class ServiceCreator : IServiceCreator
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        /// <summary>
+        /// Constructor create unit of work object
+        /// </summary>
         public ServiceCreator()
         {
             _unitOfWork = new EFUnitOfWork("DefaultConnection");

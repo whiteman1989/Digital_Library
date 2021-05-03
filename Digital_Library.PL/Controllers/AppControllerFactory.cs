@@ -9,15 +9,28 @@ using System.Configuration;
 
 namespace Digital_Library.PL.Controllers
 {
+    /// <summary>
+    /// Controllers factory for initialize controllers without using IoC container
+    /// </summary>
     public class AppControllerFactory : DefaultControllerFactory
     {
-        private IServiceCreator _serviceCreator;
+        private readonly IServiceCreator _serviceCreator;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="serviceCreator">sercices factory</param>
         public AppControllerFactory(IServiceCreator serviceCreator)
         {
             _serviceCreator = serviceCreator;
         }
 
+        /// <summary>
+        /// Create controller each request with costum params
+        /// </summary>
+        /// <param name="requestContext">request context</param>
+        /// <param name="controllerName">controller name</param>
+        /// <returns>controller object</returns>
         public override IController CreateController(RequestContext requestContext, string controllerName)
         {
             Type type = GetControllerType(requestContext, controllerName) ?? typeof(HomeController);

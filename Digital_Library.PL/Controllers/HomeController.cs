@@ -11,8 +11,8 @@ namespace Digital_Library.PL.Controllers
 {
     public class HomeController : Controller
     {
-        private IServiceCreator _serviceCreator;
-        private IPostsService _postsService;
+        private readonly IServiceCreator _serviceCreator;
+        private readonly IPostsService _postsService;
 
         public HomeController(IServiceCreator serviceCreator)
         {
@@ -20,6 +20,8 @@ namespace Digital_Library.PL.Controllers
             _postsService = _serviceCreator.CreatePostService();
         }
 
+        //GET: Home
+        //GET: Index
         public ActionResult Index()
         {
             var posts = _postsService.GetPosts();

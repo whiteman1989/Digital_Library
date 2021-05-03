@@ -12,8 +12,8 @@ namespace Digital_Library.PL.Controllers
 {
     public class GuestController : Controller
     {
-        private IServiceCreator _serviceCreator;
-        private ICommentsSerice _commentsSerice;
+        private readonly IServiceCreator _serviceCreator;
+        private readonly ICommentsSerice _commentsSerice;
 
         public GuestController(IServiceCreator serviceCreator)
         {
@@ -30,6 +30,7 @@ namespace Digital_Library.PL.Controllers
             return View(viewModel);
         }
 
+        // POST: Guest/Index
         [HttpPost]
         public ActionResult Index(CommentsViewModel model)
         {

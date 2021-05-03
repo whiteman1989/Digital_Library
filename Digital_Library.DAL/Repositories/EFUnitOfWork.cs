@@ -9,6 +9,9 @@ using Digital_Library.DAL.Data;
 
 namespace Digital_Library.DAL.Repositories
 {
+    /// <summary>
+    /// Implements IUnitOfWork interface for using with Entity Framework
+    /// </summary>
     public class EFUnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext db;
@@ -19,11 +22,19 @@ namespace Digital_Library.DAL.Repositories
         private AnswerVariantsRepository answerVariantsRepository;
         private AnswersRepository answersRepository;
 
+        /// <summary>
+        /// Constructor that use ApplicationContextFactory for create db context with defoult connection string
+        /// </summary>
         public EFUnitOfWork()
         {
             db = new ApplicationContextFactory().Create();
         }
 
+
+        /// <summary>
+        /// Constructor that create db context with costum connection string
+        /// </summary>
+        /// <param name="connectionString">conntection string</param>
         public EFUnitOfWork(string connectionString)
         {
             db = new ApplicationContext(connectionString);
@@ -101,6 +112,9 @@ namespace Digital_Library.DAL.Repositories
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Save all change in db context
+        /// </summary>
         public void Save()
         {
             db.SaveChanges();

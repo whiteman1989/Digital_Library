@@ -12,11 +12,18 @@ using AutoMapper;
 
 namespace Digital_Library.BL.Services
 {
+    /// <summary>
+    /// Implements Comment service
+    /// </summary>
     class CommentService : ICommentsSerice
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mapper _mapper;
 
+        /// <summary>
+        /// Constructor get UnitOfWork object
+        /// </summary>
+        /// <param name="unitOfWork">Unit Of Work</param>
         public CommentService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

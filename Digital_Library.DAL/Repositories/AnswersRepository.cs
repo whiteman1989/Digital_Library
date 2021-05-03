@@ -16,6 +16,7 @@ namespace Digital_Library.DAL.Repositories
     class AnswersRepository : IRepository<Answer>
     {
         private readonly ApplicationContext _db;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -24,6 +25,7 @@ namespace Digital_Library.DAL.Repositories
         {
             _db = context;
         }
+
         /// <summary>
         /// Create new answer
         /// </summary>
@@ -32,11 +34,12 @@ namespace Digital_Library.DAL.Repositories
         {
             _db.Answers.Add(item);
         }
+
         /// <summary>
         /// Delete answer by Id
         /// </summary>
         /// <param name="id">Unique ID of the answer</param>
-        /// <returns></returns>
+        /// <returns>Returnt true if answer deleted</returns>
         public bool Delete(int id)
         {
             Answer answer = _db.Answers.Find(id);
@@ -47,26 +50,40 @@ namespace Digital_Library.DAL.Repositories
             }
             return false;
         }
+
         /// <summary>
-        /// Find n
+        /// Find answer that satisfy the conditions of the predicate
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
+        /// <param name="predicate">Predicate used to filtering objects</param>
+        /// <returns>Collection of answer from repository</returns>
         public IQueryable<Answer> Find(Func<Answer, bool> predicate)
         {
             return _db.Answers.Where(predicate).AsQueryable();
         }
 
+        /// <summary>
+        /// Get amswer by Id
+        /// </summary>
+        /// <param name="id">Unique ID of the answer</param>
+        /// <returns>answer</returns>
         public Answer Get(int id)
         {
             return _db.Answers.Find(id);
         }
 
+        /// <summary>
+        /// Rerurn collection of the all answer
+        /// </summary>
+        /// <returns>Collection of answer from repository</returns>
         public IQueryable<Answer> GetAll()
         {
             return _db.Answers;
         }
 
+        /// <summary>
+        /// Update answer
+        /// </summary>
+        /// <param name="item">Answer object</param>
         public void Update(Answer item)
         {
             _db.Entry(item).State = EntityState.Modified;

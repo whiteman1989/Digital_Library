@@ -12,11 +12,18 @@ using AutoMapper;
 
 namespace Digital_Library.BL.Services
 {
+    /// <summary>
+    /// Implement Questionnarie service
+    /// </summary>
     class QuestionnarieService : IQestionnarieService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mapper _mapper;
 
+        /// <summary>
+        /// Constructor get UnitOfWork object
+        /// </summary>
+        /// <param name="unitOfWork">Unit Of Work</param>
         public QuestionnarieService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
