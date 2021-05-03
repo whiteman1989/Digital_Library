@@ -20,9 +20,8 @@
                             <ul>
                                 @if (question.QuestionType.ToString().ToLower() == "TextBox".ToLower())
                                 {
-
-                                    @Html.Hidden(name + ".QuestionId", question.Id)
                                     <li>
+                                        @Html.Hidden(name + $"[0].QuestionId", question.Id)
                                         @Html.TextBox(name + "[0].Text")
                                     </li>
                                 }
@@ -32,21 +31,20 @@
                                     {
                                         var ansverVar = question.AnswerVariants[y];
                                         <li>
-                                            @Html.Hidden(name + $"{name}[{y}].QuestionId", question.Id)
-                                            @Html.Label(name + $"{name}[{y}].Text", ansverVar.Text)
-                                            @Html.RadioButton(name + $"{name}[{y}].Text", ansverVar.Text)
+                                            @Html.Hidden($"{name}[{y}].QuestionId", question.Id)
+                                            @Html.Label($"{name}[{y}].Text", ansverVar.Text)
+                                            @Html.RadioButton($"{name}[{y}].Text", ansverVar.Text)
                                         </li>
                                     }
                                 }
                                 else
                                 {
-                                    @Html.Hidden(name + ".QuestionId", question.Id)
                                     for (int y = 0; y < question.AnswerVariants.Count; y++)
                                     {
                                         var ansverVar = question.AnswerVariants[y];
                                         <li>
-
-                                            @Html.Label(name + $"{name}[{y}].Text", ansverVar.Text)
+                                            @Html.Hidden($"{name}[{y}].QuestionId", question.Id)
+                                            @Html.Label($"{name}[{y}].Text", ansverVar.Text)
                                             <input type="checkbox" name="@(name)[@y].Text" value="@ansverVar.Text">
                                         </li>
                                     }

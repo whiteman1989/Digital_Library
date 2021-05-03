@@ -70,8 +70,19 @@ namespace Digital_Library.PL.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult RegisterAnswer(int questionnarieId, List<AnswerDTO> answers)
+        public ActionResult RegisterAnswer(int questionnarieId, List<QuestionDTO> questionsRes)
         {
+            var answers = new List<AnswerDTO>();
+            foreach (var question in questionsRes)
+            {
+                foreach (var answer in question.Answers)
+                {
+                    if(answer.Text is object)
+                    {
+                        answers.Add(answer);
+                    }
+                }
+            }
             _qestionnarieService.AddAnswers(answers);
             var questionnarie = _qestionnarieService.GetQuestionnarie(questionnarieId);
             var questions = questionnarie.Questions;
