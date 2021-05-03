@@ -39,7 +39,7 @@ namespace Digital_Library.PL.Controllers
 
         public ActionResult AddQuestionnarie(QuestionnariesViewModel questionnariesView)
         {
-            var questionnarie = questionnariesView.NewQuestionnarie;
+            var questionnarie = new QuestionnarieDTO { Title = questionnariesView.NewQuestionnarie};
             questionnarie = _qestionnarieService.AddQuestionnarie(questionnarie);
             var viewModel = new EditQuestionnarieViewModel();
             viewModel.Questionnarie = questionnarie;
@@ -96,6 +96,19 @@ namespace Digital_Library.PL.Controllers
             }
             var viewModel = new ResultViewModel { Questionnarie = questionnarie, QuestionStats = questionStats };
             return View("Result", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CheckExistingQuestionntarie(string NewQuestionnarie)
+        {
+            try
+            {
+                return Json(_qestionnarieService.CheckExistingQuestionntarie(NewQuestionnarie), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         #region HELPERS

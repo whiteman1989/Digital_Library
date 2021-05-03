@@ -90,3 +90,9 @@ footer {
 #wrap {
     width: 100%
 }
+
+.input-validation-error
+{
+    outline-color: red;
+    border: 2px solid red;
+}

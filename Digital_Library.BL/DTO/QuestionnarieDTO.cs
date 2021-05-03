@@ -9,6 +9,7 @@ namespace Digital_Library.BL.DTO
     public class QuestionnarieDTO
     {
         public int Id { get; set; }
+        
         public string Title { get; set; }
         public bool IsActive { get; set; }
 

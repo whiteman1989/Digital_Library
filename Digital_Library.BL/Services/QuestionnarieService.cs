@@ -117,5 +117,11 @@ namespace Digital_Library.BL.Services
                     .AsEnumerable()
                 );
         }
+
+        public bool CheckExistingQuestionntarie(string name)
+        {
+            var isExist = _unitOfWork.Qestionnaries.Find(q => q.Title.ToLower() == name.ToLower()).Any();
+            return isExist;
+        }
     }
 }

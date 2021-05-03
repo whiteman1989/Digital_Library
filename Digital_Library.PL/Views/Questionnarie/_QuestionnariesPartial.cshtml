@@ -16,7 +16,7 @@
                         var question = questionnarie.Questions[j];
                         var name = $"[{j}].Answers";
                         <div class="question">
-                            <h3 class="card-subtitle">@question.Text</h3>
+                            <h4 class="card-subtitle text-secondary">@question.Text</h4>
                             <ul>
                                 @if (question.QuestionType.ToString().ToLower() == "TextBox".ToLower())
                                 {
@@ -52,7 +52,7 @@
                             </ul>
                         </div>
                     }
-                    <button class="btn" type="submit">Sumbmit</button>
+                    <button class="btn btn-secondary" type="submit">Sumbmit</button>
                 }
 
             </div>

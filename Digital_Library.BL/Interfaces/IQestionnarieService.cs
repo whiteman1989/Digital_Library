@@ -19,5 +19,6 @@ namespace Digital_Library.BL.Interfaces
         void AddAnswers(IEnumerable<AnswerDTO> answers);
         void AddAnswer(AnswerDTO answer);
         void ActivateQuestionnarie(int id);
+        bool CheckExistingQuestionntarie(string name);
     }
 }
