@@ -38,6 +38,7 @@ namespace Digital_Library.BL.Services
         {
             var post = _mapper.Map<Post>(postDTO);
             _unitOfWork.Posts.Create(post);
+            _unitOfWork.Save();
         }
 
         public void DeletePost(int id)
@@ -46,12 +47,14 @@ namespace Digital_Library.BL.Services
             {
                 throw new ValidationException("No post with this id", "id");
             }
+            _unitOfWork.Save();
         }
 
         public void EditPost(PostDTO postDTO)
         {
             var post = _mapper.Map<Post>(postDTO);
             _unitOfWork.Posts.Update(post);
+            _unitOfWork.Save();
         }
 
         public PostDTO GetPost(int id)

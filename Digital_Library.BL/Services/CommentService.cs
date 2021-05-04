@@ -15,7 +15,7 @@ namespace Digital_Library.BL.Services
     /// <summary>
     /// Implements Comment service
     /// </summary>
-    class CommentService : ICommentsSerice
+    public class CommentService : ICommentsSerice
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mapper _mapper;
@@ -41,7 +41,7 @@ namespace Digital_Library.BL.Services
             _unitOfWork.Save();
         }
 
-        public void DeleteComent(int id)
+        public void DeleteComment(int id)
         {
             if (!_unitOfWork.Comments.Delete(id))
             {
@@ -82,7 +82,7 @@ namespace Digital_Library.BL.Services
             return (count / pageSize) + ((count % pageSize) > 0 ? 1 : 0);
         }
 
-        public void UodateComment(CommetDTO commetDTO)
+        public void UpdateComment(CommetDTO commetDTO)
         {
             var comment = _mapper.Map<Comment>(commetDTO);
             _unitOfWork.Comments.Update(comment);

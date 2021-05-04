@@ -3,6 +3,7 @@ using Digital_Library.DAL.Entities;
 using Digital_Library.DAL.Interfaces;
 using Digital_Library.BL.DTO;
 using Digital_Library.BL.Services;
+using Digital_Library.BL.Infrastructure;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Digital_Library.Tests.Services
     public class PostServiceTest
     {
         [TestMethod]
-        public void AddPost_GetPostDTOAndAddPostToReposistory()
+        public void AddPost_GetPostDTOAndAddPostToReposistoryAndSaveChange()
         {
             //Arrange
             var uowMoq = GetUowMoq();
@@ -30,6 +31,134 @@ namespace Digital_Library.Tests.Services
             uowMoq.Verify(m => m.Save(), Times.Once());
         }
 
+        [TestMethod]
+        public void DeletePost_DeletePostAndSaveChanges_IfPostIsExist()
+        {
+            //Arrange
+            var uowMoq = new Mock<IUnitOfWork>();
+            uowMoq.Setup(m => m.Posts.Delete(It.IsAny<int>())).Returns(true);
+            var postService = new PostService(uowMoq.Object);
+            int postId = 1;
+
+            //act
+            postService.DeletePost(postId);
+
+            uowMoq.Verify(m => m.Posts.Delete(It.Is<int>(id => id == postId)));
+            uowMoq.Verify(m => m.Save(), Times.Once());
+        }
+
+        [TestMethod]
+        public void DeletePost_ThrowsValidationExceptionAndNotSaveChamges_IfPostIsNotExist()
+        {
+            //Arrange
+            var uowMoq = new Mock<IUnitOfWork>();
+            uowMoq.Setup(m => m.Posts.Delete(It.IsAny<int>())).Returns(false);
+            var postService = new PostService(uowMoq.Object);
+            int postId = 1;
+
+            //act
+            Action act = () => postService.DeletePost(postId);
+
+            Assert.ThrowsException<ValidationException>(act);
+            uowMoq.Verify(m => m.Save(), Times.Never());
+        }
+
+        [TestMethod]
+        public void EditPost_UpdatesPostAndSaveChange()
+        {
+            //Arrange
+            var uowMoq = new Mock<IUnitOfWork>();
+            var postsMoq = new Mock<IRepository<Post>>();
+            uowMoq.Setup(m => m.Posts).Returns(postsMoq.Object);
+            var postService = new PostService(uowMoq.Object);
+            var updatedPost = new PostDTO { Id = 1, Text = "test1", Title = "test2", Date = DateTime.Now };
+
+            //act
+            postService.EditPost(updatedPost);
+
+            uowMoq.Verify(m => m.Posts.Update(It.Is<Post>(p => p.Id == updatedPost.Id &&
+                                                               p.Text == updatedPost.Text &&
+                                                               p.Title == updatedPost.Title &&
+                                                               p.Date == updatedPost.Date)));
+            uowMoq.Verify(m => m.Save(), Times.Once());
+        }
+
+        [TestMethod]
+        public void GetPost_ReturnsPost_IfPostIsExist()
+        {
+            //Arrange
+            var uowMoq = GetUowMoq();
+            var postService = new PostService(uowMoq.Object);
+            int postId = 1;
+
+            //Act
+            var res = postService.GetPost(postId);
+
+            //Assert
+            Assert.AreEqual(GetPosts().FirstOrDefault(p => p.Id == postId).Text, res.Text);
+        }
+
+        public void GetPost_ReturnsNull_IfPostIsNotExist()
+        {
+            //Arrange
+            var uowMoq = GetUowMoq();
+            var postService = new PostService(uowMoq.Object);
+            int postId = 10;
+
+            //Act
+            var res = postService.GetPost(postId);
+
+            //Assert
+            Assert.IsNull(res);
+        }
+
+        [TestMethod]
+        public void GetPosts_ReturnsCollectionOfAllPostsDTO()
+        {
+            //Arrange
+            var uowMoq = GetUowMoq();
+            var postService = new PostService(uowMoq.Object);
+
+            //Act
+            var res = postService.GetPosts();
+
+            //Assert
+            Assert.IsNotNull(res);
+            Assert.AreEqual(GetPosts().Count, res.Count());
+        }
+
+        [TestMethod]
+        public void GetPosts_ReturnstCurentNumberOfPosts_WhenUseItWithArguments()
+        {
+            //Arrange
+            var uowMoq = GetUowMoq();
+            var postService = new PostService(uowMoq.Object);
+            int postOnPage = 2;
+
+            //Act
+            var res = postService.GetPosts(postOnPage, 1);
+
+            //Assert
+            Assert.IsNotNull(res);
+            Assert.IsTrue(res.Count() <= postOnPage);
+        }
+
+        [TestMethod]
+        public void PageCount_ReturnsNumberOfPages()
+        {
+            //Arrange
+            var uowMoq = GetUowMoq();
+            var postService = new PostService(uowMoq.Object);
+            int postOnPage = 2;
+
+            //Act
+            var res = postService.PageCount(postOnPage);
+
+            //Assert
+            Assert.AreEqual(2, res);
+        }
+
+        #region DATA AND REPO
         private Mock<IRepository<Post>> GetPostRepositoryMoq()
         {
             var postRepMoq = new Mock<IRepository<Post>>();
@@ -98,5 +227,6 @@ namespace Digital_Library.Tests.Services
                 }
             };
         }
+        #endregion DATA AND REPO
     }
 }

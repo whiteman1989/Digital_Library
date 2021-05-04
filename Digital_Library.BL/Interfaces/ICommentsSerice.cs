@@ -22,7 +22,7 @@ namespace Digital_Library.BL.Interfaces
         /// Uodate comment in repository
         /// </summary>
         /// <param name="commetDTO">comment DTO object</param>
-        void UodateComment(CommetDTO commetDTO);
+        void UpdateComment(CommetDTO commetDTO);
 
         /// <summary>
         /// Get comment by id
@@ -49,7 +49,7 @@ namespace Digital_Library.BL.Interfaces
         /// Delate comment by id
         /// </summary>
         /// <param name="id">comment id</param>
-        void DeleteComent(int id);
+        void DeleteComment(int id);
 
         /// <summary>
         /// Number of pages
