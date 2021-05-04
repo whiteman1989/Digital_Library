@@ -29,12 +29,12 @@ namespace Digital_Library.BL.Services
             _unitOfWork = unitOfWork;
 
             var mapperConfig = new MapperConfiguration(cfg =>
-                cfg.CreateMap<CommetDTO, Comment>().ReverseMap());
+                cfg.CreateMap<CommentDTO, Comment>().ReverseMap());
 
             _mapper = new Mapper(mapperConfig);
         }
 
-        public void AddComment(CommetDTO commetDTO)
+        public void AddComment(CommentDTO commetDTO)
         {
             var comment = _mapper.Map<Comment>(commetDTO);
             _unitOfWork.Comments.Create(comment);
@@ -50,9 +50,9 @@ namespace Digital_Library.BL.Services
             _unitOfWork.Save();
         }
 
-        public CommetDTO GetComment(int id)
+        public CommentDTO GetComment(int id)
         {
-            var commetDTO = _mapper.Map<CommetDTO>(_unitOfWork.Comments.Get(id));
+            var commetDTO = _mapper.Map<CommentDTO>(_unitOfWork.Comments.Get(id));
             if (commetDTO is null)
             {
                 throw new ValidationException("No comment with this id", "id");
@@ -63,17 +63,17 @@ namespace Digital_Library.BL.Services
             }
         }
 
-        public IEnumerable<CommetDTO> GetComments()
+        public IEnumerable<CommentDTO> GetComments()
         {
-            var commentDTO = _mapper.Map<IEnumerable<CommetDTO>>(_unitOfWork.Comments.GetAll().AsEnumerable());
+            var commentDTO = _mapper.Map<IEnumerable<CommentDTO>>(_unitOfWork.Comments.GetAll().AsEnumerable());
             return commentDTO;
         }
 
-        public IEnumerable<CommetDTO> GetComments(int pageSize, int page)
+        public IEnumerable<CommentDTO> GetComments(int pageSize, int page)
         {
             var comments = _unitOfWork.Comments.GetAll().Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
             if (!comments.Any()) throw new ValidationException("this page is empty", nameof(page));
-            return _mapper.Map<IEnumerable<CommetDTO>>(comments);
+            return _mapper.Map<IEnumerable<CommentDTO>>(comments);
         }
 
         public int PageCount(int pageSize)
@@ -82,7 +82,7 @@ namespace Digital_Library.BL.Services
             return (count / pageSize) + ((count % pageSize) > 0 ? 1 : 0);
         }
 
-        public void UpdateComment(CommetDTO commetDTO)
+        public void UpdateComment(CommentDTO commetDTO)
         {
             var comment = _mapper.Map<Comment>(commetDTO);
             _unitOfWork.Comments.Update(comment);

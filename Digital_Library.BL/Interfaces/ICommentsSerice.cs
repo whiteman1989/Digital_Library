@@ -16,26 +16,26 @@ namespace Digital_Library.BL.Interfaces
         /// Add new comment
         /// </summary>
         /// <param name="commetDTO">comment DTO object</param>
-        void AddComment(CommetDTO commetDTO);
+        void AddComment(CommentDTO commetDTO);
 
         /// <summary>
         /// Uodate comment in repository
         /// </summary>
         /// <param name="commetDTO">comment DTO object</param>
-        void UpdateComment(CommetDTO commetDTO);
+        void UpdateComment(CommentDTO commetDTO);
 
         /// <summary>
         /// Get comment by id
         /// </summary>
         /// <param name="id">comment id</param>
         /// <returns>comment</returns>
-        CommetDTO GetComment(int id);
+        CommentDTO GetComment(int id);
 
         /// <summary>
         /// Get all comments
         /// </summary>
         /// <returns>comments collection</returns>
-        IEnumerable<CommetDTO> GetComments();
+        IEnumerable<CommentDTO> GetComments();
 
         /// <summary>
         /// Gett some of the comments to be posted on the page
@@ -43,7 +43,7 @@ namespace Digital_Library.BL.Interfaces
         /// <param name="pageSize">number of comments per page</param>
         /// <param name="page">Page number</param>
         /// <returns>comments collection</returns>
-        IEnumerable<CommetDTO> GetComments(int pageSize, int page);
+        IEnumerable<CommentDTO> GetComments(int pageSize, int page);
 
         /// <summary>
         /// Delate comment by id

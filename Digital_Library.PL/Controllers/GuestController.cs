@@ -36,7 +36,7 @@ namespace Digital_Library.PL.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newComment = new CommetDTO
+                var newComment = new CommentDTO
                 {
                     Author = model.NewCommentAuthor,
                     Text = model.NewCommentText,

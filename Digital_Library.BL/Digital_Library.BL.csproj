@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="DTO\AnswerDTO.cs" />
     <Compile Include="DTO\AnswerVariantDTO.cs" />
-    <Compile Include="DTO\CommetDTO.cs" />
+    <Compile Include="DTO\CommentDTO.cs" />
     <Compile Include="DTO\PostDTO.cs" />
     <Compile Include="DTO\QuestionDTO.cs" />
     <Compile Include="DTO\QuestionnarieDTO.cs" />

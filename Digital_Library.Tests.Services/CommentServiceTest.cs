@@ -22,7 +22,7 @@ namespace Digital_Library.Tests.Services
             var uowMoq = new Mock<IUnitOfWork>();
             uowMoq.Setup(m => m.Comments).Returns(commentRepMoq.Object);
             var commentService = new CommentService(uowMoq.Object);
-            var newComment = new CommetDTO { Text = "1", Author = "2" };
+            var newComment = new CommentDTO { Text = "1", Author = "2" };
 
             //Act
             commentService.AddComment(newComment);
@@ -79,7 +79,7 @@ namespace Digital_Library.Tests.Services
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(commentId, result.ID);
+            Assert.AreEqual(commentId, result.Id);
         }
 
         [TestMethod]
@@ -134,13 +134,13 @@ namespace Digital_Library.Tests.Services
             //Arrange
             var uowMoq = GetUowMoq();
             var commentService = new CommentService(uowMoq.Object);
-            var updatedComment = new CommetDTO { ID = 1, Author = "1", Text = "2", Date = DateTime.Now };
+            var updatedComment = new CommentDTO { Id = 1, Author = "1", Text = "2", Date = DateTime.Now };
 
             //Act
             commentService.UpdateComment(updatedComment);
 
             //Assert
-            uowMoq.Verify(m => m.Comments.Update(It.Is<Comment>(c => c.Id == updatedComment.ID &&
+            uowMoq.Verify(m => m.Comments.Update(It.Is<Comment>(c => c.Id == updatedComment.Id &&
                                                                      c.Text == updatedComment.Text &&
                                                                      c.Author == updatedComment.Author &&
                                                                      c.Date == updatedComment.Date)));
@@ -169,49 +169,49 @@ namespace Digital_Library.Tests.Services
         private List<Comment> GetComments()
         {
             return new List<Comment>
-        {
-                new Comment
-                {
-                    Id = 1,
-                    Author = "Oleg",
-                    Text = "I am ready to meet my Maker. Whether my Maker is prepared for the " +
-                    "great ordeal of meeting me is another matter.",
-                    Date = new DateTime(2021, 04, 02)
-                },
-                new Comment
-                {
-                    Id = 2,
-                    Author = "Ihor",
-                    Text = "Microsoft bought Skype for 8,5 billion!.. what a bunch of idiots! I " +
-                    "downloaded it for free!",
-                    Date = new DateTime(2021, 04, 15)
-                },
-                new Comment
-                {
-                    Id = 3,
-                    Author = "User 1",
-                    Text = "Don't steal, don't lie, don't cheat, don't sell drugs. The " +
-                    "government hates competition!",
-                    Date = new DateTime(2021,04,16)
-                },
-                new Comment
-                {
-                    Id = 4,
-                    Author = "Max",
-                    Text = "Some people come into our lives and leave footprints on our hearts, " +
-                    "while others come into our lives and make us wanna leave footprints on their " +
-                    "face.",
-                    Date = new DateTime(2021,04,16)
-                },
-                new Comment
-                {
-                    Id = 5,
-                    Author = "Olga",
-                    Text = "Some people come into our lives and leave footprints on our hearts, " +
-                    "while others come into our lives and make us wanna leave footprints on their face.",
-                    Date = new DateTime(2021,04,17)
-                }
-        };
+            {
+                    new Comment
+                    {
+                        Id = 1,
+                        Author = "Oleg",
+                        Text = "I am ready to meet my Maker. Whether my Maker is prepared for the " +
+                        "great ordeal of meeting me is another matter.",
+                        Date = new DateTime(2021, 04, 02)
+                    },
+                    new Comment
+                    {
+                        Id = 2,
+                        Author = "Ihor",
+                        Text = "Microsoft bought Skype for 8,5 billion!.. what a bunch of idiots! I " +
+                        "downloaded it for free!",
+                        Date = new DateTime(2021, 04, 15)
+                    },
+                    new Comment
+                    {
+                        Id = 3,
+                        Author = "User 1",
+                        Text = "Don't steal, don't lie, don't cheat, don't sell drugs. The " +
+                        "government hates competition!",
+                        Date = new DateTime(2021,04,16)
+                    },
+                    new Comment
+                    {
+                        Id = 4,
+                        Author = "Max",
+                        Text = "Some people come into our lives and leave footprints on our hearts, " +
+                        "while others come into our lives and make us wanna leave footprints on their " +
+                        "face.",
+                        Date = new DateTime(2021,04,16)
+                    },
+                    new Comment
+                    {
+                        Id = 5,
+                        Author = "Olga",
+                        Text = "Some people come into our lives and leave footprints on our hearts, " +
+                        "while others come into our lives and make us wanna leave footprints on their face.",
+                        Date = new DateTime(2021,04,17)
+                    }
+            };
         }
         #endregion DATA AND REPO
     }

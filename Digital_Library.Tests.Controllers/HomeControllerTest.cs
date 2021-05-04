@@ -8,6 +8,7 @@ using Digital_Library.BL.Infrastructure;
 using Digital_Library.BL.Interfaces;
 using Digital_Library.PL.Models;
 using Digital_Library.PL.Controllers;
+using System.Web.Mvc;
 
 namespace Digital_Library.Tests.Controllers
 {
@@ -15,10 +16,23 @@ namespace Digital_Library.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Index_ReturnsModelAndModelNotNull()
         {
+            //Arrange
+            var serCreatMoq = new Mock<IServiceCreator>();
+            var postServMoq = new Mock<IPostsService>();
+            serCreatMoq.Setup(m => m.CreatePostService()).Returns(postServMoq.Object);
+            postServMoq.Setup(m => m.GetPosts()).Returns(GetPosts());
+            var controller = new HomeController(serCreatMoq.Object);
 
+            //Act
+            var result = controller.Index() as ViewResult;
+
+            //Assert
+            Assert.IsNotNull(result.Model);
         }
+
+
 
         #region TEST DATA
         private List<PostDTO> GetPosts()

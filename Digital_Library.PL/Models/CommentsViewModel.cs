@@ -9,7 +9,7 @@ namespace Digital_Library.PL.Models
 {
     public class CommentsViewModel
     {
-        public IEnumerable<CommetDTO> Commets { get; set; }
+        public IEnumerable<CommentDTO> Commets { get; set; }
 
         [Required(ErrorMessage = "Enter your name")]
         [Display(Name = "Your name")]
