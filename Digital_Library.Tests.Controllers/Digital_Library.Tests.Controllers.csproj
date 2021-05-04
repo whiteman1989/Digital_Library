@@ -62,11 +62,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="HomeControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Digital_Library.BL\Digital_Library.BL.csproj">
+      <Project>{abbcffc6-c59e-4924-8043-c5ff69a784e5}</Project>
+      <Name>Digital_Library.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Digital_Library.PL\Digital_Library.PL.csproj">
+      <Project>{9cd28177-dae4-49c5-8c7c-986cfedc55b1}</Project>
+      <Name>Digital_Library.PL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
